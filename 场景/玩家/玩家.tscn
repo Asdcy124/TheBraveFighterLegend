@@ -1,0 +1,226 @@
+[gd_scene format=3 uid="uid://o4y373egsog8"]
+
+[ext_resource type="Texture2D" uid="uid://kxjfv4sipqsw" path="res://资源/generic_char_v0.2/generic_char_v0.2/png/green/char_green_1.png" id="1_o2saa"]
+[ext_resource type="Script" uid="uid://ycwxg0w3cesi" path="res://场景/玩家/玩家.cs" id="1_v4cha"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o2saa"]
+atlas = ExtResource("1_o2saa")
+region = Rect2(0, 112, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dmjsp"]
+atlas = ExtResource("1_o2saa")
+region = Rect2(56, 112, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8p86"]
+atlas = ExtResource("1_o2saa")
+region = Rect2(112, 112, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qtkja"]
+atlas = ExtResource("1_o2saa")
+region = Rect2(168, 112, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5rjv"]
+atlas = ExtResource("1_o2saa")
+region = Rect2(224, 112, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rjhho"]
+atlas = ExtResource("1_o2saa")
+region = Rect2(280, 112, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bpdls"]
+atlas = ExtResource("1_o2saa")
+region = Rect2(336, 112, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k1yy4"]
+atlas = ExtResource("1_o2saa")
+region = Rect2(392, 112, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v4cha"]
+atlas = ExtResource("1_o2saa")
+region = Rect2(0, 0, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2pksg"]
+atlas = ExtResource("1_o2saa")
+region = Rect2(56, 0, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_63w52"]
+atlas = ExtResource("1_o2saa")
+region = Rect2(112, 0, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2pnob"]
+atlas = ExtResource("1_o2saa")
+region = Rect2(168, 0, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gpyyr"]
+atlas = ExtResource("1_o2saa")
+region = Rect2(224, 0, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qpola"]
+atlas = ExtResource("1_o2saa")
+region = Rect2(280, 0, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmvrj"]
+atlas = ExtResource("1_o2saa")
+region = Rect2(112, 168, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s244t"]
+atlas = ExtResource("1_o2saa")
+region = Rect2(168, 168, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5hg7"]
+atlas = ExtResource("1_o2saa")
+region = Rect2(224, 168, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dmura"]
+atlas = ExtResource("1_o2saa")
+region = Rect2(280, 168, 56, 56)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d6f17"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o2saa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dmjsp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8p86")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qtkja")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v5rjv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rjhho")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bpdls")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k1yy4")
+}],
+"loop": 1,
+"name": &"奔跑",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v4cha")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2pksg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_63w52")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2pnob")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gpyyr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qpola")
+}],
+"loop": 1,
+"name": &"待机",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rmvrj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s244t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y5hg7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dmura")
+}],
+"loop": 1,
+"name": &"跳跃",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o2saa"]
+size = Vector2(12, 27)
+
+[sub_resource type="Animation" id="Animation_2pksg"]
+resource_name = "奔跑"
+length = 0.009999999999999998
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("动画精灵:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"奔跑"]
+}
+
+[sub_resource type="Animation" id="Animation_o2saa"]
+resource_name = "待机"
+length = 0.009999999999999998
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("动画精灵:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"待机"]
+}
+
+[sub_resource type="Animation" id="Animation_63w52"]
+resource_name = "跳跃"
+length = 0.009999999999999998
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("动画精灵:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"跳跃"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v4cha"]
+_data = {
+&"奔跑": SubResource("Animation_2pksg"),
+&"待机": SubResource("Animation_o2saa"),
+&"跳跃": SubResource("Animation_63w52")
+}
+
+[node name="玩家" type="CharacterBody2D" unique_id=193318640]
+script = ExtResource("1_v4cha")
+
+[node name="动画精灵" type="AnimatedSprite2D" parent="." unique_id=1871224212]
+position = Vector2(0, -28)
+sprite_frames = SubResource("SpriteFrames_d6f17")
+animation = &"奔跑"
+autoplay = "待机"
+frame_progress = 0.27062842
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2084795479]
+position = Vector2(0, -13.5)
+shape = SubResource("RectangleShape2D_o2saa")
+
+[node name="动画播放器" type="AnimationPlayer" parent="." unique_id=871584206]
+libraries/ = SubResource("AnimationLibrary_v4cha")
+autoplay = &"待机"
