@@ -34,8 +34,8 @@ public partial class 玩家 : CharacterBody2D
 
         #region 动画
         //翻转
-        if (输入的方向.X != 0)
-            动画精灵.FlipH = 输入的方向.X < 0;
+        //if (输入的方向.X != 0)
+            //动画精灵.FlipH = 输入的方向.X < 0;
 
         //跳跃
         if (!IsOnFloor())
