@@ -22,8 +22,8 @@ public partial class 玩家 : CharacterBody2D
         //重力
         速度矢量 += GetGravity() * (float)delta;
         //移动
-        Vector2 输入的方向 = Input.GetVector("移动_左", "移动_右", "移动_上", "移动_下");
-        速度矢量.X = 输入的方向.X * 奔跑速度;
+        float 左右移动 = Input.GetAxis("移动_左", "移动_右");
+        速度矢量.X = 左右移动 * 奔跑速度;
         //跳跃
         if (IsOnFloor() && Input.IsActionJustPressed("跳跃"))
             速度矢量.Y = -跳跃速度;
@@ -34,8 +34,8 @@ public partial class 玩家 : CharacterBody2D
 
         #region 动画
         //翻转
-        if (输入的方向.X != 0)
-            动画精灵.FlipH = 输入的方向.X < 0;
+        if (左右移动 != 0)
+            动画精灵.FlipH = 左右移动 < 0;
 
         //跳跃
         if (!IsOnFloor())

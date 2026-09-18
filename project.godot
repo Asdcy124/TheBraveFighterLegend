@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="勇者传说"
+config/name="TheBraveFighterLegend"
 run/main_scene="uid://b5u2eynn4ql5o"
 config/features=PackedStringArray("4.7", "C#", "GL Compatibility")
 config/icon="uid://hgujprlu71d6"
@@ -26,7 +26,7 @@ window/stretch/aspect="expand"
 
 [dotnet]
 
-project/assembly_name="勇者传说"
+project/assembly_name="TheBraveFighterLegend"
 
 [file_customization]
 

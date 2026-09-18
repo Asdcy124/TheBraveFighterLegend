@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://o4y373egsog8" path="res://场景/玩家/玩家.tscn" id="2_ptsbx"]
 [ext_resource type="Script" uid="uid://coemrxyt8gnd4" path="res://场景/游戏场景/主相机.cs" id="3_ptsbx"]
 [ext_resource type="Texture2D" uid="uid://v6i0556s37sx" path="res://资源/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Background/Background.png" id="4_0ec6m"]
+[ext_resource type="Texture2D" uid="uid://cxlyru57fcebd" path="res://资源/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Trees/Background.png" id="5_urcff"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0jjxs"]
 texture = ExtResource("1_g47tw")
@@ -379,11 +380,51 @@ drag_vertical_enabled = true
 editor_draw_drag_margin = true
 script = ExtResource("3_ptsbx")
 
-[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1108683523]
+[node name="天空" type="Parallax2D" parent="." unique_id=1108683523]
 z_index = -1
 scroll_scale = Vector2(0.3, 0.1)
 repeat_size = Vector2(480, 0)
 
-[node name="Background" type="Sprite2D" parent="Parallax2D" unique_id=1504415540]
+[node name="Background" type="Sprite2D" parent="天空" unique_id=1504415540]
 position = Vector2(240, 103)
 texture = ExtResource("4_0ec6m")
+
+[node name="山地" type="Parallax2D" parent="." unique_id=1750179576]
+z_index = -1
+scroll_scale = Vector2(0.5, 0.2)
+repeat_size = Vector2(384, 0)
+
+[node name="Background" type="Sprite2D" parent="山地" unique_id=506155780]
+position = Vector2(0, -32)
+texture = ExtResource("5_urcff")
+centered = false
+region_enabled = true
+region_rect = Rect2(800, 0, 96, 256)
+
+[node name="Background2" type="Sprite2D" parent="山地" unique_id=2104745870]
+position = Vector2(96, -32)
+texture = ExtResource("5_urcff")
+centered = false
+region_enabled = true
+region_rect = Rect2(800, 0, 96, 256)
+
+[node name="Background3" type="Sprite2D" parent="山地" unique_id=974546303]
+position = Vector2(192, -32)
+texture = ExtResource("5_urcff")
+centered = false
+region_enabled = true
+region_rect = Rect2(800, 0, 96, 256)
+
+[node name="Background4" type="Sprite2D" parent="山地" unique_id=1867734977]
+position = Vector2(288, -32)
+texture = ExtResource("5_urcff")
+centered = false
+region_enabled = true
+region_rect = Rect2(800, 0, 96, 256)
+
+[node name="Background5" type="Sprite2D" parent="山地" unique_id=263517504]
+position = Vector2(384, -32)
+texture = ExtResource("5_urcff")
+centered = false
+region_enabled = true
+region_rect = Rect2(800, 0, 96, 256)
