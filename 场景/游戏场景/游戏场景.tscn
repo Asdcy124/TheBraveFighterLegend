@@ -372,7 +372,7 @@ layer_2/tile_data = PackedInt32Array(589842, 589824, 2, 589852, 589824, 2, 58985
 metadata/_edit_lock_ = true
 
 [node name="玩家" parent="." unique_id=193318640 instance=ExtResource("2_ptsbx")]
-position = Vector2(51, 91)
+position = Vector2(51, 93)
 collision_layer = 2
 
 [node name="主相机" type="Camera2D" parent="玩家" unique_id=358668547]
@@ -383,6 +383,7 @@ limit_smoothed = true
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
+drag_top_margin = 0.3
 editor_draw_drag_margin = true
 script = ExtResource("3_ptsbx")
 

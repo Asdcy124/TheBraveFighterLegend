@@ -152,7 +152,7 @@ size = Vector2(12, 27)
 
 [sub_resource type="Animation" id="Animation_2pksg"]
 resource_name = "奔跑"
-length = 0.009999999999999998
+length = 0.00999999999999999
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -169,7 +169,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_o2saa"]
 resource_name = "待机"
-length = 0.009999999999999998
+length = 0.00999999999999999
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -186,7 +186,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_63w52"]
 resource_name = "跳跃"
-length = 0.009999999999999998
+length = 0.00999999999999999
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -224,3 +224,11 @@ shape = SubResource("RectangleShape2D_o2saa")
 [node name="动画播放器" type="AnimationPlayer" parent="." unique_id=871584206]
 libraries/ = SubResource("AnimationLibrary_v4cha")
 autoplay = &"待机"
+
+[node name="踏空跳跃计时器" type="Timer" parent="." unique_id=1739966982]
+wait_time = 0.1
+one_shot = true
+
+[node name="提前跳跃计时器" type="Timer" parent="." unique_id=505569906]
+wait_time = 0.1
+one_shot = true
