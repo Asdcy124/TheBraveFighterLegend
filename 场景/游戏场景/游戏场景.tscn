@@ -399,6 +399,10 @@ repeat_size = Vector2(480, 0)
 position = Vector2(240, 103)
 texture = ExtResource("4_0ec6m")
 
+[node name="Background2" type="Sprite2D" parent="视差背景/天空" unique_id=1298277870]
+position = Vector2(720, 103)
+texture = ExtResource("4_0ec6m")
+
 [node name="山地" type="Parallax2D" parent="视差背景" unique_id=1750179576]
 scroll_scale = Vector2(0.3, 0.2)
 repeat_size = Vector2(384, 0)
@@ -433,6 +437,18 @@ texture = ExtResource("5_fh1cb")
 centered = false
 region_rect = Rect2(800, 0, 96, 256)
 
+[node name="Background6" type="Sprite2D" parent="视差背景/山地" unique_id=616018022]
+position = Vector2(480, -32)
+texture = ExtResource("5_fh1cb")
+centered = false
+region_rect = Rect2(800, 0, 96, 256)
+
+[node name="Background7" type="Sprite2D" parent="视差背景/山地" unique_id=1507366789]
+position = Vector2(576, -32)
+texture = ExtResource("5_fh1cb")
+centered = false
+region_rect = Rect2(800, 0, 96, 256)
+
 [node name="树林" type="Parallax2D" parent="视差背景" unique_id=1894475317]
 scroll_scale = Vector2(0.5, 0.4)
 repeat_size = Vector2(384, 0)
@@ -463,6 +479,18 @@ region_rect = Rect2(112, 0, 96, 256)
 
 [node name="Background5" type="Sprite2D" parent="视差背景/树林" unique_id=964040288]
 position = Vector2(384, 24)
+texture = ExtResource("6_fh1cb")
+centered = false
+region_rect = Rect2(112, 0, 96, 256)
+
+[node name="Background6" type="Sprite2D" parent="视差背景/树林" unique_id=1333801022]
+position = Vector2(480, 24)
+texture = ExtResource("6_fh1cb")
+centered = false
+region_rect = Rect2(112, 0, 96, 256)
+
+[node name="Background7" type="Sprite2D" parent="视差背景/树林" unique_id=129730555]
+position = Vector2(576, 24)
 texture = ExtResource("6_fh1cb")
 centered = false
 region_rect = Rect2(112, 0, 96, 256)
