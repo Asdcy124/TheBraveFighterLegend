@@ -15,10 +15,15 @@ run/main_scene="uid://b5u2eynn4ql5o"
 config/features=PackedStringArray("4.7", "C#", "GL Compatibility")
 config/icon="uid://hgujprlu71d6"
 
+[autoload]
+
+"移动端虚拟按键"="*uid://dgnnrk17k20m6"
+
 [display]
 
 window/size/viewport_width=426
 window/size/viewport_height=240
+window/size/always_on_top=true
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="canvas_items"
@@ -77,6 +82,10 @@ folder_colors={
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
+
+[layer_names]
+
+2d_physics/layer_2="玩家"
 
 [physics]
 

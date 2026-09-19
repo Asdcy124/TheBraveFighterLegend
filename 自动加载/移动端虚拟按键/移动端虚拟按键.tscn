@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://dgnnrk17k20m6"]
+
+[ext_resource type="Texture2D" uid="uid://ddojoqij31ow" path="res://资源/icon.svg" id="1_ndpdm"]
+
+[node name="移动端虚拟按键" type="CanvasLayer" unique_id=1882640313]
+
+[node name="VirtualJoystick" type="VirtualJoystick" parent="." unique_id=1905503589]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -129.0
+offset_right = 147.0
+grow_vertical = 0
+action_left = &"移动_左"
+action_right = &"移动_右"
+action_up = &"移动_上"
+action_down = &"移动_下"
+
+[node name="Control" type="Control" parent="." unique_id=1117851994]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -90.0
+offset_top = -94.0
+offset_right = -90.0
+offset_bottom = -94.0
+grow_horizontal = 0
+grow_vertical = 0
+metadata/_edit_group_ = true
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="Control" unique_id=1781689608]
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("1_ndpdm")
+action = "跳跃"

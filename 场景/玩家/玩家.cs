@@ -11,8 +11,8 @@ public partial class 玩家 : CharacterBody2D
         动画播放器 = GetNode<AnimationPlayer>("动画播放器");
     }
 
-    [Export] public float 奔跑速度 = 200;
-    [Export] public float 跳跃速度 = 300;
+    [Export] public float 奔跑速度 = 160;
+    [Export] public float 跳跃速度 = 320;
 
     public override void _PhysicsProcess(double delta)
     {
@@ -22,9 +22,9 @@ public partial class 玩家 : CharacterBody2D
         //重力
         速度矢量 += GetGravity() * (float)delta;
         //移动
-        int 左右移动 = 0;
-        if (Input.IsActionPressed("移动_左")) 左右移动--;
-        if (Input.IsActionPressed("移动_右")) 左右移动++;
+        float 左右移动 = Input.GetAxis("移动_左", "移动_右");
+        左右移动 = Mathf.Round(左右移动 * 2f) / 2f;
+
 
         速度矢量.X = 左右移动 * 奔跑速度;
         //跳跃

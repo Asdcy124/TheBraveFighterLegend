@@ -1,12 +1,13 @@
 [gd_scene format=3 uid="uid://b5u2eynn4ql5o"]
 
 [ext_resource type="Texture2D" uid="uid://xyuleum0yphv" path="res://资源/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Assets/Tree-Assets.png" id="1_g47tw"]
+[ext_resource type="Script" uid="uid://ce43qh2t4fpwy" path="res://场景/游戏场景/游戏场景.cs" id="1_uqjd0"]
 [ext_resource type="PackedScene" uid="uid://o4y373egsog8" path="res://场景/玩家/玩家.tscn" id="2_ptsbx"]
 [ext_resource type="Script" uid="uid://coemrxyt8gnd4" path="res://场景/游戏场景/主相机.cs" id="3_ptsbx"]
 [ext_resource type="Texture2D" uid="uid://v6i0556s37sx" path="res://资源/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Background/Background.png" id="4_0ec6m"]
 [ext_resource type="Texture2D" uid="uid://cimuw7pggqim1" path="res://资源/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/自制/山地.png" id="5_fh1cb"]
 [ext_resource type="Texture2D" uid="uid://go6siwrdxg35" path="res://资源/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/自制/树林.png" id="6_fh1cb"]
-[ext_resource type="Texture2D" uid="uid://ddojoqij31ow" path="res://资源/icon.svg" id="7_knhg3"]
+[ext_resource type="Texture2D" uid="uid://but2jx4qqhw8t" path="res://资源/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Assets/Tiles.png" id="7_knhg3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0jjxs"]
 texture = ExtResource("1_g47tw")
@@ -352,7 +353,11 @@ terrain_set_0/terrain_1/name = "树叶"
 terrain_set_0/terrain_1/color = Color(0.5, 0.4375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_0jjxs")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rx6n1"]
+size = Vector2(30, 32)
+
 [node name="游戏场景" type="Node2D" unique_id=1006751308]
+script = ExtResource("1_uqjd0")
 metadata/_edit_lock_ = true
 
 [node name="TileMap" type="TileMap" parent="." unique_id=426043001]
@@ -368,6 +373,7 @@ metadata/_edit_lock_ = true
 
 [node name="玩家" parent="." unique_id=193318640 instance=ExtResource("2_ptsbx")]
 position = Vector2(51, 91)
+collision_layer = 2
 
 [node name="主相机" type="Camera2D" parent="玩家" unique_id=358668547]
 process_callback = 0
@@ -381,9 +387,10 @@ editor_draw_drag_margin = true
 script = ExtResource("3_ptsbx")
 
 [node name="视差背景" type="Node2D" parent="." unique_id=1706587411]
+z_index = -1
+metadata/_edit_lock_ = true
 
 [node name="天空" type="Parallax2D" parent="视差背景" unique_id=1108683523]
-z_index = -1
 scroll_scale = Vector2(0.2, 0.05)
 repeat_size = Vector2(480, 0)
 
@@ -392,7 +399,6 @@ position = Vector2(240, 103)
 texture = ExtResource("4_0ec6m")
 
 [node name="山地" type="Parallax2D" parent="视差背景" unique_id=1750179576]
-z_index = -1
 scroll_scale = Vector2(0.3, 0.2)
 repeat_size = Vector2(384, 0)
 
@@ -427,7 +433,6 @@ centered = false
 region_rect = Rect2(800, 0, 96, 256)
 
 [node name="树林" type="Parallax2D" parent="视差背景" unique_id=1894475317]
-z_index = -1
 scroll_scale = Vector2(0.5, 0.4)
 repeat_size = Vector2(384, 0)
 
@@ -461,37 +466,142 @@ texture = ExtResource("6_fh1cb")
 centered = false
 region_rect = Rect2(112, 0, 96, 256)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2010626923]
+[node name="树丛" type="Parallax2D" parent="视差背景" unique_id=681168965]
+scroll_scale = Vector2(0.9, 1)
 
-[node name="VirtualJoystick" type="VirtualJoystick" parent="CanvasLayer" unique_id=769192563]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -128.0
-offset_right = 147.0
-offset_bottom = 1.0
-grow_vertical = 0
-action_left = &"移动_左"
-action_right = &"移动_右"
-action_up = &"移动_上"
-action_down = &"移动_下"
+[node name="Sprite2D" type="Sprite2D" parent="视差背景/树丛" unique_id=2000715403]
+position = Vector2(38, 143)
+texture = ExtResource("1_g47tw")
+region_enabled = true
+region_rect = Rect2(210, 5, 124, 86)
 
-[node name="Control" type="Control" parent="CanvasLayer" unique_id=540727265]
-layout_mode = 3
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -102.0
-offset_top = -90.0
-offset_right = -102.0
-offset_bottom = -90.0
-grow_horizontal = 0
-grow_vertical = 0
+[node name="Sprite2D2" type="Sprite2D" parent="视差背景/树丛" unique_id=1335417142]
+position = Vector2(435, 153)
+texture = ExtResource("1_g47tw")
+region_enabled = true
+region_rect = Rect2(210, 5, 124, 86)
+
+[node name="Sprite2D3" type="Sprite2D" parent="视差背景/树丛" unique_id=57248489]
+position = Vector2(899, -53)
+texture = ExtResource("1_g47tw")
+region_enabled = true
+region_rect = Rect2(210, 197, 124, 86)
+
+[node name="Sprite2D4" type="Sprite2D" parent="视差背景/树丛" unique_id=189846121]
+position = Vector2(1385, 85)
+texture = ExtResource("1_g47tw")
+region_enabled = true
+region_rect = Rect2(210, 197, 124, 86)
+
+[node name="视差前景" type="Node2D" parent="." unique_id=1125926815]
+visible = false
+metadata/_edit_lock_ = true
+
+[node name="树丛" type="Parallax2D" parent="视差前景" unique_id=398604001]
+scroll_scale = Vector2(1.2, 1.2)
+
+[node name="TreeAssets" type="Sprite2D" parent="视差前景/树丛" unique_id=536011465]
+position = Vector2(86, 183)
+texture = ExtResource("1_g47tw")
+region_enabled = true
+region_rect = Rect2(210, 197, 124, 86)
+
+[node name="TreeAssets2" type="Sprite2D" parent="视差前景/树丛" unique_id=779381393]
+position = Vector2(150, 175)
+texture = ExtResource("1_g47tw")
+region_enabled = true
+region_rect = Rect2(210, 197, 124, 86)
+
+[node name="TreeAssets3" type="Sprite2D" parent="视差前景/树丛" unique_id=1680180048]
+position = Vector2(201, 191)
+texture = ExtResource("1_g47tw")
+region_enabled = true
+region_rect = Rect2(210, 197, 124, 86)
+
+[node name="TreeAssets7" type="Sprite2D" parent="视差前景/树丛" unique_id=618069675]
+position = Vector2(675, 196)
+texture = ExtResource("1_g47tw")
+region_enabled = true
+region_rect = Rect2(210, 197, 124, 86)
+
+[node name="TreeAssets8" type="Sprite2D" parent="视差前景/树丛" unique_id=724701088]
+position = Vector2(739, 188)
+texture = ExtResource("1_g47tw")
+region_enabled = true
+region_rect = Rect2(210, 197, 124, 86)
+
+[node name="TreeAssets9" type="Sprite2D" parent="视差前景/树丛" unique_id=1508188709]
+position = Vector2(790, 204)
+texture = ExtResource("1_g47tw")
+region_enabled = true
+region_rect = Rect2(210, 197, 124, 86)
+
+[node name="TreeAssets10" type="Sprite2D" parent="视差前景/树丛" unique_id=365771981]
+position = Vector2(1153, -115)
+texture = ExtResource("1_g47tw")
+region_enabled = true
+region_rect = Rect2(210, 197, 124, 86)
+
+[node name="TreeAssets11" type="Sprite2D" parent="视差前景/树丛" unique_id=1007444705]
+position = Vector2(1217, -123)
+texture = ExtResource("1_g47tw")
+region_enabled = true
+region_rect = Rect2(210, 197, 124, 86)
+
+[node name="TreeAssets12" type="Sprite2D" parent="视差前景/树丛" unique_id=293093545]
+position = Vector2(1268, -107)
+texture = ExtResource("1_g47tw")
+region_enabled = true
+region_rect = Rect2(210, 197, 124, 86)
+
+[node name="TreeAssets13" type="Sprite2D" parent="视差前景/树丛" unique_id=1226022000]
+position = Vector2(1730, 77)
+texture = ExtResource("1_g47tw")
+region_enabled = true
+region_rect = Rect2(210, 197, 124, 86)
+
+[node name="TreeAssets14" type="Sprite2D" parent="视差前景/树丛" unique_id=448223819]
+position = Vector2(1794, 69)
+texture = ExtResource("1_g47tw")
+region_enabled = true
+region_rect = Rect2(210, 197, 124, 86)
+
+[node name="TreeAssets15" type="Sprite2D" parent="视差前景/树丛" unique_id=1798233279]
+position = Vector2(1845, 85)
+texture = ExtResource("1_g47tw")
+region_enabled = true
+region_rect = Rect2(210, 197, 124, 86)
+
+[node name="TreeAssets4" type="Sprite2D" parent="视差前景/树丛" unique_id=626073230]
+position = Vector2(242, -3)
+texture = ExtResource("1_g47tw")
+region_enabled = true
+region_rect = Rect2(210, 197, 124, 86)
+
+[node name="TreeAssets5" type="Sprite2D" parent="视差前景/树丛" unique_id=1926511540]
+position = Vector2(295, -26)
+texture = ExtResource("1_g47tw")
+region_enabled = true
+region_rect = Rect2(210, 197, 124, 86)
+
+[node name="TreeAssets6" type="Sprite2D" parent="视差前景/树丛" unique_id=1952147413]
+position = Vector2(346, 6)
+texture = ExtResource("1_g47tw")
+region_enabled = true
+region_rect = Rect2(210, 197, 124, 86)
+
+[node name="测试传送" type="Area2D" parent="." unique_id=281051035]
+position = Vector2(35, -25)
+collision_layer = 0
+collision_mask = 2
 metadata/_edit_group_ = true
 
-[node name="TouchScreenButton" type="TouchScreenButton" parent="CanvasLayer/Control" unique_id=1970527795]
-scale = Vector2(0.5, 0.5)
-texture_normal = ExtResource("7_knhg3")
-action = "跳跃"
+[node name="Tiles" type="Sprite2D" parent="测试传送" unique_id=2047296285]
+texture = ExtResource("7_knhg3")
+region_enabled = true
+region_rect = Rect2(128, 64, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="测试传送" unique_id=541329701]
+shape = SubResource("RectangleShape2D_rx6n1")
+
+[connection signal="body_entered" from="测试传送" to="." method="On_测试传送_BodyEntered"]
