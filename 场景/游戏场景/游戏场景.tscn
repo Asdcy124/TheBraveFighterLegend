@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://v6i0556s37sx" path="res://资源/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Background/Background.png" id="4_0ec6m"]
 [ext_resource type="Texture2D" uid="uid://cimuw7pggqim1" path="res://资源/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/自制/山地.png" id="5_fh1cb"]
 [ext_resource type="Texture2D" uid="uid://go6siwrdxg35" path="res://资源/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/自制/树林.png" id="6_fh1cb"]
+[ext_resource type="Texture2D" uid="uid://ddojoqij31ow" path="res://资源/icon.svg" id="7_knhg3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0jjxs"]
 texture = ExtResource("1_g47tw")
@@ -352,8 +353,6 @@ terrain_set_0/terrain_1/color = Color(0.5, 0.4375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_0jjxs")
 
 [node name="游戏场景" type="Node2D" unique_id=1006751308]
-metadata/_edit_horizontal_guides_ = [192.0, -69.0]
-metadata/_edit_vertical_guides_ = [-32.0]
 metadata/_edit_lock_ = true
 
 [node name="TileMap" type="TileMap" parent="." unique_id=426043001]
@@ -381,81 +380,118 @@ drag_vertical_enabled = true
 editor_draw_drag_margin = true
 script = ExtResource("3_ptsbx")
 
-[node name="天空" type="Parallax2D" parent="." unique_id=1108683523]
+[node name="视差背景" type="Node2D" parent="." unique_id=1706587411]
+
+[node name="天空" type="Parallax2D" parent="视差背景" unique_id=1108683523]
 z_index = -1
 scroll_scale = Vector2(0.2, 0.05)
 repeat_size = Vector2(480, 0)
 
-[node name="Background" type="Sprite2D" parent="天空" unique_id=1504415540]
+[node name="Background" type="Sprite2D" parent="视差背景/天空" unique_id=1504415540]
 position = Vector2(240, 103)
 texture = ExtResource("4_0ec6m")
 
-[node name="山地" type="Parallax2D" parent="." unique_id=1750179576]
+[node name="山地" type="Parallax2D" parent="视差背景" unique_id=1750179576]
 z_index = -1
 scroll_scale = Vector2(0.3, 0.2)
 repeat_size = Vector2(384, 0)
 
-[node name="Background" type="Sprite2D" parent="山地" unique_id=506155780]
+[node name="Background" type="Sprite2D" parent="视差背景/山地" unique_id=506155780]
 position = Vector2(0, -32)
 texture = ExtResource("5_fh1cb")
 centered = false
 region_rect = Rect2(800, 0, 96, 256)
 
-[node name="Background2" type="Sprite2D" parent="山地" unique_id=2104745870]
+[node name="Background2" type="Sprite2D" parent="视差背景/山地" unique_id=2104745870]
 position = Vector2(96, -32)
 texture = ExtResource("5_fh1cb")
 centered = false
 region_rect = Rect2(800, 0, 96, 256)
 
-[node name="Background3" type="Sprite2D" parent="山地" unique_id=974546303]
+[node name="Background3" type="Sprite2D" parent="视差背景/山地" unique_id=974546303]
 position = Vector2(192, -32)
 texture = ExtResource("5_fh1cb")
 centered = false
 region_rect = Rect2(800, 0, 96, 256)
 
-[node name="Background4" type="Sprite2D" parent="山地" unique_id=1867734977]
+[node name="Background4" type="Sprite2D" parent="视差背景/山地" unique_id=1867734977]
 position = Vector2(288, -32)
 texture = ExtResource("5_fh1cb")
 centered = false
 region_rect = Rect2(800, 0, 96, 256)
 
-[node name="Background5" type="Sprite2D" parent="山地" unique_id=263517504]
+[node name="Background5" type="Sprite2D" parent="视差背景/山地" unique_id=263517504]
 position = Vector2(384, -32)
 texture = ExtResource("5_fh1cb")
 centered = false
 region_rect = Rect2(800, 0, 96, 256)
 
-[node name="树林" type="Parallax2D" parent="." unique_id=1894475317]
+[node name="树林" type="Parallax2D" parent="视差背景" unique_id=1894475317]
 z_index = -1
 scroll_scale = Vector2(0.5, 0.4)
 repeat_size = Vector2(384, 0)
 
-[node name="Background" type="Sprite2D" parent="树林" unique_id=803342858]
+[node name="Background" type="Sprite2D" parent="视差背景/树林" unique_id=803342858]
 position = Vector2(0, 24)
 texture = ExtResource("6_fh1cb")
 centered = false
 region_rect = Rect2(112, 0, 96, 256)
 
-[node name="Background2" type="Sprite2D" parent="树林" unique_id=899287568]
+[node name="Background2" type="Sprite2D" parent="视差背景/树林" unique_id=899287568]
 position = Vector2(96, 24)
 texture = ExtResource("6_fh1cb")
 centered = false
 region_rect = Rect2(112, 0, 96, 256)
 
-[node name="Background3" type="Sprite2D" parent="树林" unique_id=16391988]
+[node name="Background3" type="Sprite2D" parent="视差背景/树林" unique_id=16391988]
 position = Vector2(192, 24)
 texture = ExtResource("6_fh1cb")
 centered = false
 region_rect = Rect2(112, 0, 96, 256)
 
-[node name="Background4" type="Sprite2D" parent="树林" unique_id=1341389557]
+[node name="Background4" type="Sprite2D" parent="视差背景/树林" unique_id=1341389557]
 position = Vector2(288, 25)
 texture = ExtResource("6_fh1cb")
 centered = false
 region_rect = Rect2(112, 0, 96, 256)
 
-[node name="Background5" type="Sprite2D" parent="树林" unique_id=964040288]
+[node name="Background5" type="Sprite2D" parent="视差背景/树林" unique_id=964040288]
 position = Vector2(384, 24)
 texture = ExtResource("6_fh1cb")
 centered = false
 region_rect = Rect2(112, 0, 96, 256)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2010626923]
+
+[node name="VirtualJoystick" type="VirtualJoystick" parent="CanvasLayer" unique_id=769192563]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -128.0
+offset_right = 147.0
+offset_bottom = 1.0
+grow_vertical = 0
+action_left = &"移动_左"
+action_right = &"移动_右"
+action_up = &"移动_上"
+action_down = &"移动_下"
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=540727265]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -102.0
+offset_top = -90.0
+offset_right = -102.0
+offset_bottom = -90.0
+grow_horizontal = 0
+grow_vertical = 0
+metadata/_edit_group_ = true
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="CanvasLayer/Control" unique_id=1970527795]
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("7_knhg3")
+action = "跳跃"

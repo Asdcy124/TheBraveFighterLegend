@@ -22,7 +22,10 @@ public partial class 玩家 : CharacterBody2D
         //重力
         速度矢量 += GetGravity() * (float)delta;
         //移动
-        float 左右移动 = Input.GetAxis("移动_左", "移动_右");
+        int 左右移动 = 0;
+        if (Input.IsActionPressed("移动_左")) 左右移动--;
+        if (Input.IsActionPressed("移动_右")) 左右移动++;
+
         速度矢量.X = 左右移动 * 奔跑速度;
         //跳跃
         if (IsOnFloor() && Input.IsActionJustPressed("跳跃"))
