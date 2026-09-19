@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://kxjfv4sipqsw" path="res://资源/generic_char_v0.2/generic_char_v0.2/png/green/char_green_1.png" id="1_o2saa"]
 [ext_resource type="Script" uid="uid://ycwxg0w3cesi" path="res://场景/玩家/玩家.cs" id="1_v4cha"]
+[ext_resource type="Script" uid="uid://b2vwono5egeyu" path="res://类/状态机/状态机.cs" id="3_2pksg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o2saa"]
 atlas = ExtResource("1_o2saa")
@@ -75,6 +76,54 @@ region = Rect2(224, 168, 56, 56)
 atlas = ExtResource("1_o2saa")
 region = Rect2(280, 168, 56, 56)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_pmfwr"]
+atlas = ExtResource("1_o2saa")
+region = Rect2(56, 224, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ev82y"]
+atlas = ExtResource("1_o2saa")
+region = Rect2(112, 224, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6pgcs"]
+atlas = ExtResource("1_o2saa")
+region = Rect2(168, 224, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vaps7"]
+atlas = ExtResource("1_o2saa")
+region = Rect2(224, 224, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mnvwe"]
+atlas = ExtResource("1_o2saa")
+region = Rect2(336, 168, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ag7dg"]
+atlas = ExtResource("1_o2saa")
+region = Rect2(392, 168, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0xrfw"]
+atlas = ExtResource("1_o2saa")
+region = Rect2(0, 224, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_80f6p"]
+atlas = ExtResource("1_o2saa")
+region = Rect2(280, 224, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j5tpd"]
+atlas = ExtResource("1_o2saa")
+region = Rect2(336, 224, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_keyxt"]
+atlas = ExtResource("1_o2saa")
+region = Rect2(392, 224, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ohk2v"]
+atlas = ExtResource("1_o2saa")
+region = Rect2(0, 168, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_86pkc"]
+atlas = ExtResource("1_o2saa")
+region = Rect2(56, 168, 56, 56)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_d6f17"]
 animations = [{
 "frames": [{
@@ -126,7 +175,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_qpola")
 }],
 "loop": 1,
-"name": &"待机",
+"name": &"空闲",
 "speed": 8.0
 }, {
 "frames": [{
@@ -143,7 +192,63 @@ animations = [{
 "texture": SubResource("AtlasTexture_dmura")
 }],
 "loop": 1,
-"name": &"跳跃",
+"name": &"跳跃上升",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmfwr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ev82y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6pgcs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vaps7")
+}],
+"loop": 1,
+"name": &"跳跃下落",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mnvwe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ag7dg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0xrfw")
+}],
+"loop": 0,
+"name": &"跳跃中间",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_80f6p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j5tpd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_keyxt")
+}],
+"loop": 0,
+"name": &"跳跃着陆",
+"speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ohk2v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_86pkc")
+}],
+"loop": 0,
+"name": &"跳跃起跳",
 "speed": 8.0
 }]
 
@@ -181,7 +286,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"待机"]
+"values": [&"空闲"]
 }
 
 [sub_resource type="Animation" id="Animation_63w52"]
@@ -197,14 +302,50 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"跳跃"]
+"values": [&"跳跃上升"]
+}
+
+[sub_resource type="Animation" id="Animation_v4cha"]
+resource_name = "跳跃下落"
+length = 0.00999999999999999
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("动画精灵:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"跳跃下落"]
+}
+
+[sub_resource type="Animation" id="Animation_2pnob"]
+resource_name = "跳跃着陆"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("动画精灵:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"跳跃着陆"]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_v4cha"]
 _data = {
 &"奔跑": SubResource("Animation_2pksg"),
-&"待机": SubResource("Animation_o2saa"),
-&"跳跃": SubResource("Animation_63w52")
+&"空闲": SubResource("Animation_o2saa"),
+&"跳跃上升": SubResource("Animation_63w52"),
+&"跳跃下落": SubResource("Animation_v4cha"),
+&"跳跃着陆": SubResource("Animation_2pnob")
 }
 
 [node name="玩家" type="CharacterBody2D" unique_id=193318640]
@@ -213,9 +354,10 @@ script = ExtResource("1_v4cha")
 [node name="动画精灵" type="AnimatedSprite2D" parent="." unique_id=1871224212]
 position = Vector2(0, -28)
 sprite_frames = SubResource("SpriteFrames_d6f17")
-animation = &"奔跑"
-autoplay = "待机"
-frame_progress = 0.27062842
+animation = &"跳跃着陆"
+autoplay = "空闲"
+frame = 2
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2084795479]
 position = Vector2(0, -13.5)
@@ -223,7 +365,7 @@ shape = SubResource("RectangleShape2D_o2saa")
 
 [node name="动画播放器" type="AnimationPlayer" parent="." unique_id=871584206]
 libraries/ = SubResource("AnimationLibrary_v4cha")
-autoplay = &"待机"
+autoplay = &"空闲"
 
 [node name="踏空跳跃计时器" type="Timer" parent="." unique_id=1739966982]
 wait_time = 0.1
@@ -232,3 +374,7 @@ one_shot = true
 [node name="提前跳跃计时器" type="Timer" parent="." unique_id=505569906]
 wait_time = 0.1
 one_shot = true
+
+[node name="状态机" type="Node" parent="." unique_id=790044956]
+script = ExtResource("3_2pksg")
+metadata/_custom_type_script = "uid://b2vwono5egeyu"
