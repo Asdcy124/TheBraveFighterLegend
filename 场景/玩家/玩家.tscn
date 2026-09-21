@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://kxjfv4sipqsw" path="res://资源/generic_char_v0.2/generic_char_v0.2/png/green/char_green_1.png" id="1_o2saa"]
 [ext_resource type="Script" uid="uid://ycwxg0w3cesi" path="res://场景/玩家/玩家.cs" id="1_v4cha"]
 [ext_resource type="Script" uid="uid://b2vwono5egeyu" path="res://类/状态机/状态机.cs" id="3_2pksg"]
+[ext_resource type="Texture2D" uid="uid://bjxkoo40kyvfw" path="res://资源/generic_char_v0.2/generic_char_v0.2/png/green/char_green_2.png" id="3_63w52"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o2saa"]
 atlas = ExtResource("1_o2saa")
@@ -35,6 +36,22 @@ region = Rect2(336, 112, 56, 56)
 [sub_resource type="AtlasTexture" id="AtlasTexture_k1yy4"]
 atlas = ExtResource("1_o2saa")
 region = Rect2(392, 112, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k24br"]
+atlas = ExtResource("3_63w52")
+region = Rect2(0, 168, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4h5j5"]
+atlas = ExtResource("3_63w52")
+region = Rect2(56, 168, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2roxc"]
+atlas = ExtResource("3_63w52")
+region = Rect2(112, 168, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hlqfq"]
+atlas = ExtResource("3_63w52")
+region = Rect2(168, 168, 56, 56)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v4cha"]
 atlas = ExtResource("1_o2saa")
@@ -157,6 +174,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_k24br")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4h5j5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2roxc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hlqfq")
+}],
+"loop": 1,
+"name": &"滑墙",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_v4cha")
 }, {
 "duration": 1.0,
@@ -253,7 +287,46 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o2saa"]
-size = Vector2(12, 27)
+size = Vector2(12, 28)
+
+[sub_resource type="Animation" id="Animation_gpyyr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("动画精灵:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(6, -24)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("动画精灵/滑墙手:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-6, 2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("动画精灵/滑墙脚:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-6, 22)]
+}
 
 [sub_resource type="Animation" id="Animation_2pksg"]
 resource_name = "奔跑"
@@ -272,6 +345,95 @@ tracks/0/keys = {
 "values": [&"奔跑"]
 }
 
+[sub_resource type="Animation" id="Animation_cx2mw"]
+resource_name = "滑墙"
+length = 0.009999999999999998
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("动画精灵:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"滑墙"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("动画精灵:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/path = NodePath("动画精灵:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(6, -24)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("动画精灵/滑墙手:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-6, 2)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("动画精灵/滑墙脚:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-6, 22)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("动画精灵/滑墙手:target_position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("动画精灵/滑墙脚:target_position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_o2saa"]
 resource_name = "待机"
 length = 0.00999999999999999
@@ -288,6 +450,78 @@ tracks/0/keys = {
 "update": 1,
 "values": [&"空闲"]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("动画精灵:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("动画精灵:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -28)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("动画精灵/滑墙手:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 2)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("动画精灵/滑墙手:target_position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(8, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("动画精灵/滑墙脚:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 22)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("动画精灵/滑墙脚:target_position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(8, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_63w52"]
 resource_name = "跳跃"
@@ -303,6 +537,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [&"跳跃上升"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("动画精灵:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -25)]
 }
 
 [sub_resource type="Animation" id="Animation_v4cha"]
@@ -321,10 +567,22 @@ tracks/0/keys = {
 "update": 1,
 "values": [&"跳跃下落"]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("动画精灵:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -25)]
+}
 
 [sub_resource type="Animation" id="Animation_2pnob"]
 resource_name = "跳跃着陆"
-length = 0.1
+length = 0.009999999999999998
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -341,7 +599,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_v4cha"]
 _data = {
+&"RESET": SubResource("Animation_gpyyr"),
 &"奔跑": SubResource("Animation_2pksg"),
+&"滑墙": SubResource("Animation_cx2mw"),
 &"空闲": SubResource("Animation_o2saa"),
 &"跳跃上升": SubResource("Animation_63w52"),
 &"跳跃下落": SubResource("Animation_v4cha"),
@@ -350,17 +610,24 @@ _data = {
 
 [node name="玩家" type="CharacterBody2D" unique_id=193318640]
 script = ExtResource("1_v4cha")
+metadata/_edit_lock_ = true
 
 [node name="动画精灵" type="AnimatedSprite2D" parent="." unique_id=1871224212]
-position = Vector2(0, -28)
+position = Vector2(6, -24)
 sprite_frames = SubResource("SpriteFrames_d6f17")
-animation = &"跳跃着陆"
+animation = &"空闲"
 autoplay = "空闲"
-frame = 2
-frame_progress = 1.0
+
+[node name="滑墙手" type="RayCast2D" parent="动画精灵" unique_id=1114906979]
+position = Vector2(-6, 2)
+target_position = Vector2(8, 0)
+
+[node name="滑墙脚" type="RayCast2D" parent="动画精灵" unique_id=1934442220]
+position = Vector2(-6, 22)
+target_position = Vector2(8, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2084795479]
-position = Vector2(0, -13.5)
+position = Vector2(0, -14)
 shape = SubResource("RectangleShape2D_o2saa")
 
 [node name="动画播放器" type="AnimationPlayer" parent="." unique_id=871584206]

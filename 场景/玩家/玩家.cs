@@ -5,6 +5,9 @@ public partial class 玩家 : CharacterBody2D, I_状态机
 {
     #region 子节点
     public AnimatedSprite2D 动画精灵;
+    public RayCast2D 滑墙手;
+    public RayCast2D 滑墙脚;
+
     public AnimationPlayer 动画播放器;
     /// <summary>
     /// 在不小心掉下平台的0.1秒内, 依旧可以进行跳跃<br/>
@@ -22,6 +25,9 @@ public partial class 玩家 : CharacterBody2D, I_状态机
     public override void _Ready()
     {
         动画精灵 = GetNode<AnimatedSprite2D>("动画精灵");
+        滑墙手 = GetNode<RayCast2D>("动画精灵/滑墙手");
+        滑墙脚 = GetNode<RayCast2D>("动画精灵/滑墙脚");
+
         动画播放器 = GetNode<AnimationPlayer>("动画播放器");
         踏空跳跃计时器 = GetNode<Timer>("踏空跳跃计时器");
         提前跳跃计时器 = GetNode<Timer>("提前跳跃计时器");
@@ -42,14 +48,13 @@ public partial class 玩家 : CharacterBody2D, I_状态机
     public float 空中奔跑加速度 = 8000;
     [Export] public float 跳跃速度 = 320;
 
-    public void 移动(double delta, bool is零重力 = false)
+    public void 移动(double delta, Vector2 重力)
     {
         #region 移动
         Vector2 速度矢量 = Velocity;
 
         //重力
-        if (!is零重力)
-            速度矢量 += GetGravity() * (float)delta;
+        速度矢量 += 重力 * (float)delta;
         //移动
         float 左右移动 = Input.GetAxis("移动_左", "移动_右");
         float 奔跑加速度 = IsOnFloor() ? 地面奔跑加速度 : 空中奔跑加速度;
@@ -62,7 +67,7 @@ public partial class 玩家 : CharacterBody2D, I_状态机
         #region 动画
         //翻转
         if (左右移动 != 0)
-            动画精灵.FlipH = 左右移动 < 0;
+            动画精灵.Scale = new Vector2(左右移动 < 0 ? -1 : 1, 动画精灵.Scale.Y);
         #endregion
     }
 
@@ -88,7 +93,8 @@ public partial class 玩家 : CharacterBody2D, I_状态机
         奔跑,
         跳跃上升,
         跳跃下落,
-        跳跃着陆
+        跳跃着陆,
+        滑墙
     }
 
     public E_状态[] 站在地面上的状态s = { E_状态.空闲, E_状态.奔跑, E_状态.跳跃着陆 };
@@ -99,6 +105,23 @@ public partial class 玩家 : CharacterBody2D, I_状态机
         //即将从 非地面状态 切换到 地面状态
         if (!站在地面上的状态s.Contains((E_状态)当前状态) && 站在地面上的状态s.Contains((E_状态)下一个状态))
             踏空跳跃计时器.Stop();
+
+        switch ((E_状态)当前状态)
+        {
+            case E_状态.跳跃上升:
+            case E_状态.跳跃下落:
+                动画精灵.Position = new Vector2(0, -28);
+                break;
+
+            case E_状态.滑墙:
+                动画精灵.FlipH = false;
+                动画精灵.Position = new Vector2(0, -28);
+                滑墙手.Position = new Vector2(0, 2);
+                滑墙手.TargetPosition = new Vector2(8, 0);
+                滑墙脚.Position = new Vector2(0, 22);
+                滑墙脚.TargetPosition = new Vector2(8, 0);
+                break;
+        }
 
         switch ((E_状态)下一个状态)
         {
@@ -126,6 +149,11 @@ public partial class 玩家 : CharacterBody2D, I_状态机
 
             case E_状态.跳跃着陆:
                 动画播放器.Play("跳跃着陆");
+                break;
+
+            case E_状态.滑墙:
+                动画播放器.Play("滑墙");
+                动画精灵.Position = new Vector2(6 * GetWallNormal().X, -24);
                 break;
         }
 
@@ -167,11 +195,22 @@ public partial class 玩家 : CharacterBody2D, I_状态机
             case E_状态.跳跃下落:
                 if (IsOnFloor())
                     return (int)(Velocity.X == 0 ? E_状态.跳跃着陆 : E_状态.奔跑);
+                if (IsOnWall() && 滑墙手.IsColliding() && 滑墙脚.IsColliding())
+                    return (int)E_状态.滑墙;
                 break;
 
             case E_状态.跳跃着陆:
+                if (is奔跑)
+                    return (int)E_状态.奔跑;
                 if (!动画精灵.IsPlaying())
                     return (int)E_状态.空闲;
+                break;
+
+            case E_状态.滑墙:
+                if (IsOnFloor())
+                    return (int)E_状态.空闲;
+                if (!IsOnWall())
+                    return (int)E_状态.跳跃下落;
                 break;
         }
 
@@ -183,23 +222,28 @@ public partial class 玩家 : CharacterBody2D, I_状态机
         switch ((E_状态)当前状态)
         {
             case E_状态.空闲:
-                移动(delta);
+                移动(delta, GetGravity());
                 break;
 
             case E_状态.奔跑:
-                移动(delta);
+                移动(delta, GetGravity());
                 break;
 
             case E_状态.跳跃上升:
-                移动(delta, Is切换状态后第一帧);
+                移动(delta, Is切换状态后第一帧 ? Vector2.Zero : GetGravity());
                 break;
 
             case E_状态.跳跃下落:
-                移动(delta);
+                移动(delta, GetGravity());
                 break;
 
             case E_状态.跳跃着陆:
                 站立(delta);
+                break;
+
+            case E_状态.滑墙:
+                移动(delta, GetGravity() / 3);
+                动画精灵.Scale = new Vector2(GetWallNormal().X, 动画精灵.Scale.Y);
                 break;
         }
 
