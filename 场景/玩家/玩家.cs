@@ -19,6 +19,8 @@ public partial class 玩家 : CharacterBody2D, I_状态机
     /// 如果 TimeLeft 大于0, 说明还在0.1秒内
     /// </summary>
     public Timer 提前跳跃计时器;
+
+    public 状态机 状态机;
     #endregion
 
     #region 重写Godot方法
@@ -31,6 +33,8 @@ public partial class 玩家 : CharacterBody2D, I_状态机
         动画播放器 = GetNode<AnimationPlayer>("动画播放器");
         踏空跳跃计时器 = GetNode<Timer>("踏空跳跃计时器");
         提前跳跃计时器 = GetNode<Timer>("提前跳跃计时器");
+
+        状态机 = GetNode<状态机>("状态机");
     }
 
     public override void _UnhandledInput(InputEvent @event)
@@ -45,8 +49,9 @@ public partial class 玩家 : CharacterBody2D, I_状态机
     #region 移动相关属性
     [Export] public float 奔跑速度 = 160;
     public float 地面奔跑加速度 = 800;
-    public float 空中奔跑加速度 = 8000;
+    public float 空中奔跑加速度 = 1600;
     [Export] public float 跳跃速度 = 320;
+    [Export] public Vector2 蹬墙跳速度 = new Vector2(380, 250);
 
     public void 移动(double delta, Vector2 重力)
     {
@@ -71,12 +76,12 @@ public partial class 玩家 : CharacterBody2D, I_状态机
         #endregion
     }
 
-    public void 站立(double delta)
+    public void 站立(double delta, Vector2 重力)
     {
         Vector2 速度矢量 = Velocity;
 
         //重力
-        速度矢量 += GetGravity() * (float)delta;
+        速度矢量 += 重力 * (float)delta;
         //移动
         速度矢量.X = (float)Mathf.MoveToward(速度矢量.X, 0, 空中奔跑加速度 * delta);
 
@@ -94,11 +99,14 @@ public partial class 玩家 : CharacterBody2D, I_状态机
         跳跃上升,
         跳跃下落,
         跳跃着陆,
-        滑墙
+        滑墙,
+        蹬墙跳
     }
 
     public E_状态[] 站在地面上的状态s = { E_状态.空闲, E_状态.奔跑, E_状态.跳跃着陆 };
     private bool Is切换状态后第一帧 = false;
+
+    public bool Is可以进入滑墙状态() => IsOnWall() && 滑墙手.IsColliding() && 滑墙脚.IsColliding();
 
     public void 切换状态(int 当前状态, int 下一个状态)
     {
@@ -121,6 +129,10 @@ public partial class 玩家 : CharacterBody2D, I_状态机
                 滑墙脚.Position = new Vector2(0, 22);
                 滑墙脚.TargetPosition = new Vector2(8, 0);
                 break;
+
+            case E_状态.蹬墙跳:
+                Engine.TimeScale = 1;
+                break;
         }
 
         switch ((E_状态)下一个状态)
@@ -135,8 +147,8 @@ public partial class 玩家 : CharacterBody2D, I_状态机
 
             case E_状态.跳跃上升:
                 动画播放器.Play("跳跃上升");
-                float Y = Input.IsActionPressed("跳跃") ? -跳跃速度 : -跳跃速度 / 2;//如果提前跳的按键时间太短, 就缩减跳跃力
-                Velocity = new Vector2(Velocity.X, Y);
+                float y = Input.IsActionPressed("跳跃") ? -跳跃速度 : -跳跃速度 / 2;//如果提前跳的按键时间太短, 就缩减跳跃力
+                Velocity = new Vector2(Velocity.X, y);
                 踏空跳跃计时器.Stop();
                 提前跳跃计时器.Stop();
                 break;
@@ -154,6 +166,16 @@ public partial class 玩家 : CharacterBody2D, I_状态机
             case E_状态.滑墙:
                 动画播放器.Play("滑墙");
                 动画精灵.Position = new Vector2(6 * GetWallNormal().X, -24);
+                break;
+
+            case E_状态.蹬墙跳:
+                //类似跳跃
+                动画播放器.Play("跳跃上升");
+                float x = 蹬墙跳速度.X * GetWallNormal().X;
+                y = -蹬墙跳速度.Y;//这里就对玩家友好些
+                Velocity = new Vector2(x, y);
+                提前跳跃计时器.Stop();
+                Engine.TimeScale = 0.3;
                 break;
         }
 
@@ -195,7 +217,7 @@ public partial class 玩家 : CharacterBody2D, I_状态机
             case E_状态.跳跃下落:
                 if (IsOnFloor())
                     return (int)(Velocity.X == 0 ? E_状态.跳跃着陆 : E_状态.奔跑);
-                if (IsOnWall() && 滑墙手.IsColliding() && 滑墙脚.IsColliding())
+                if (Is可以进入滑墙状态())
                     return (int)E_状态.滑墙;
                 break;
 
@@ -207,9 +229,18 @@ public partial class 玩家 : CharacterBody2D, I_状态机
                 break;
 
             case E_状态.滑墙:
-                if (IsOnFloor())
+                if (提前跳跃计时器.TimeLeft > 0 && !Is切换状态后第一帧)
+                    return (int)E_状态.蹬墙跳;
+                else if (IsOnFloor())
                     return (int)E_状态.空闲;
-                if (!IsOnWall())
+                else if (!IsOnWall())
+                    return (int)E_状态.跳跃下落;
+                break;
+
+            case E_状态.蹬墙跳:
+                if (!Is切换状态后第一帧 && Is可以进入滑墙状态())
+                    return (int)E_状态.滑墙;
+                else if (Velocity.Y >= 0)
                     return (int)E_状态.跳跃下落;
                 break;
         }
@@ -238,12 +269,22 @@ public partial class 玩家 : CharacterBody2D, I_状态机
                 break;
 
             case E_状态.跳跃着陆:
-                站立(delta);
+                站立(delta, GetGravity());
                 break;
 
             case E_状态.滑墙:
                 移动(delta, GetGravity() / 3);
                 动画精灵.Scale = new Vector2(GetWallNormal().X, 动画精灵.Scale.Y);
+                break;
+
+            case E_状态.蹬墙跳:
+                if (状态机.当前状态持续时间 < 0.1)
+                {
+                    站立(delta, Is切换状态后第一帧 ? Vector2.Zero : GetGravity());
+                    动画精灵.Scale = new Vector2(GetWallNormal().X, 动画精灵.Scale.Y);
+                }
+                else
+                    移动(delta, GetGravity());
                 break;
         }
 

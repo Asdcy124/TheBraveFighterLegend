@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cfnahfreccnnp"]
+
+[ext_resource type="Script" uid="uid://dpppdkl43t3p7" path="res://敌人/敌人.cs" id="1_5ltqj"]
+[ext_resource type="Script" uid="uid://b2vwono5egeyu" path="res://类/状态机/状态机.cs" id="2_di0qx"]
+
+[node name="敌人" type="CharacterBody2D" unique_id=754477548]
+script = ExtResource("1_5ltqj")
+"方向" = -1
+
+[node name="动画精灵" type="AnimatedSprite2D" parent="." unique_id=813344594]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=22714472]
+
+[node name="动画播放器" type="AnimationPlayer" parent="." unique_id=1290207831]
+
+[node name="状态机" type="Node" parent="." unique_id=836009627]
+script = ExtResource("2_di0qx")
+metadata/_custom_type_script = "uid://b2vwono5egeyu"

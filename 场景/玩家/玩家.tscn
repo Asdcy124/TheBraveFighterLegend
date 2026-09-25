@@ -291,42 +291,6 @@ size = Vector2(12, 28)
 
 [sub_resource type="Animation" id="Animation_gpyyr"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("动画精灵:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(6, -24)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("动画精灵/滑墙手:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-6, 2)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("动画精灵/滑墙脚:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-6, 22)]
-}
 
 [sub_resource type="Animation" id="Animation_2pksg"]
 resource_name = "奔跑"
@@ -347,7 +311,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_cx2mw"]
 resource_name = "滑墙"
-length = 0.009999999999999998
+length = 0.00999999999999999
 step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -582,7 +546,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_2pnob"]
 resource_name = "跳跃着陆"
-length = 0.009999999999999998
+length = 0.00999999999999999
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -610,20 +574,22 @@ _data = {
 
 [node name="玩家" type="CharacterBody2D" unique_id=193318640]
 script = ExtResource("1_v4cha")
+"蹬墙跳速度" = Vector2(380, 250)
 metadata/_edit_lock_ = true
 
 [node name="动画精灵" type="AnimatedSprite2D" parent="." unique_id=1871224212]
-position = Vector2(6, -24)
+position = Vector2(0, -28)
 sprite_frames = SubResource("SpriteFrames_d6f17")
 animation = &"空闲"
 autoplay = "空闲"
+frame_progress = 0.66281265
 
 [node name="滑墙手" type="RayCast2D" parent="动画精灵" unique_id=1114906979]
-position = Vector2(-6, 2)
+position = Vector2(0, 2)
 target_position = Vector2(8, 0)
 
 [node name="滑墙脚" type="RayCast2D" parent="动画精灵" unique_id=1934442220]
-position = Vector2(-6, 22)
+position = Vector2(0, 22)
 target_position = Vector2(8, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2084795479]
