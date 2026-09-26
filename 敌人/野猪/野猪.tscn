@@ -1,0 +1,280 @@
+[gd_scene format=3 uid="uid://du1go1awk8wpu"]
+
+[ext_resource type="PackedScene" uid="uid://cfnahfreccnnp" path="res://敌人/敌人.tscn" id="1_hwfq6"]
+[ext_resource type="Texture2D" uid="uid://c6rpw8pi78vjj" path="res://资源/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Mob/Boar/Hit-Vanish/Hit-Sheet.png" id="2_drhwj"]
+[ext_resource type="Script" uid="uid://cp66kl026mjcm" path="res://敌人/野猪/野猪.cs" id="2_jlt24"]
+[ext_resource type="Texture2D" uid="uid://5trex7fus2t5" path="res://资源/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Mob/Boar/Run/Run-Sheet.png" id="3_jlt24"]
+[ext_resource type="Texture2D" uid="uid://nn1xlapgxh7h" path="res://资源/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Mob/Boar/Idle/Idle-Sheet.png" id="4_yjiwj"]
+[ext_resource type="Texture2D" uid="uid://we2nlrekossy" path="res://资源/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Mob/Boar/Walk/Walk-Base-Sheet.png" id="5_xkais"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n67xy"]
+atlas = ExtResource("2_drhwj")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_usn1x"]
+atlas = ExtResource("2_drhwj")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kgfm1"]
+atlas = ExtResource("2_drhwj")
+region = Rect2(96, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26vjq"]
+atlas = ExtResource("2_drhwj")
+region = Rect2(144, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ua3m"]
+atlas = ExtResource("3_jlt24")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m515a"]
+atlas = ExtResource("3_jlt24")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nnuu2"]
+atlas = ExtResource("3_jlt24")
+region = Rect2(96, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bi310"]
+atlas = ExtResource("3_jlt24")
+region = Rect2(144, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5mu20"]
+atlas = ExtResource("3_jlt24")
+region = Rect2(192, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eryx8"]
+atlas = ExtResource("3_jlt24")
+region = Rect2(240, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rr3vp"]
+atlas = ExtResource("4_yjiwj")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rebcj"]
+atlas = ExtResource("4_yjiwj")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4xbfe"]
+atlas = ExtResource("4_yjiwj")
+region = Rect2(96, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7jyvf"]
+atlas = ExtResource("4_yjiwj")
+region = Rect2(144, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xmt5q"]
+atlas = ExtResource("5_xkais")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ibyhy"]
+atlas = ExtResource("5_xkais")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jko11"]
+atlas = ExtResource("5_xkais")
+region = Rect2(96, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ha2cm"]
+atlas = ExtResource("5_xkais")
+region = Rect2(144, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ypedw"]
+atlas = ExtResource("5_xkais")
+region = Rect2(192, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_buqoy"]
+atlas = ExtResource("5_xkais")
+region = Rect2(240, 0, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xh1ki"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n67xy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_usn1x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kgfm1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_26vjq")
+}],
+"loop": 0,
+"name": &"受击",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ua3m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m515a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nnuu2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bi310")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5mu20")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eryx8")
+}],
+"loop": 1,
+"name": &"奔跑",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rr3vp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rebcj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4xbfe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7jyvf")
+}],
+"loop": 1,
+"name": &"空闲",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xmt5q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ibyhy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jko11")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ha2cm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ypedw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_buqoy")
+}],
+"loop": 1,
+"name": &"行走",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n67xy"]
+radius = 14.035668
+
+[sub_resource type="Animation" id="Animation_drhwj"]
+resource_name = "受击"
+length = 0.009999999999999998
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("动画精灵:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"受击"]
+}
+
+[sub_resource type="Animation" id="Animation_jlt24"]
+resource_name = "奔跑"
+length = 0.009999999999999998
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("动画精灵:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"奔跑"]
+}
+
+[sub_resource type="Animation" id="Animation_yjiwj"]
+resource_name = "空闲"
+length = 0.009999999999999998
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("动画精灵:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"空闲"]
+}
+
+[sub_resource type="Animation" id="Animation_xkais"]
+resource_name = "行走"
+length = 0.009999999999999998
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("动画精灵:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"行走"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n67xy"]
+_data = {
+&"受击": SubResource("Animation_drhwj"),
+&"奔跑": SubResource("Animation_jlt24"),
+&"空闲": SubResource("Animation_yjiwj"),
+&"行走": SubResource("Animation_xkais")
+}
+
+[node name="野猪" unique_id=754477548 instance=ExtResource("1_hwfq6")]
+script = ExtResource("2_jlt24")
+
+[node name="动画精灵" parent="." index="0" unique_id=813344594]
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_xh1ki")
+animation = &"奔跑"
+autoplay = "空闲"
+frame_progress = 0.16500166
+
+[node name="墙体检测" type="RayCast2D" parent="动画精灵" index="0" unique_id=281039812]
+position = Vector2(-11, 2)
+target_position = Vector2(-12, 0)
+
+[node name="地面检测" type="RayCast2D" parent="动画精灵" index="1" unique_id=2082349786]
+position = Vector2(-14, 15)
+target_position = Vector2(0, 3)
+
+[node name="玩家检测" type="RayCast2D" parent="动画精灵" index="2" unique_id=74380875]
+position = Vector2(-11, 2)
+target_position = Vector2(-85, 0)
+collision_mask = 3
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=22714472]
+position = Vector2(0, -13)
+shape = SubResource("CircleShape2D_n67xy")
+
+[node name="动画播放器" parent="." index="2" unique_id=1290207831]
+libraries/ = SubResource("AnimationLibrary_n67xy")
+
+[node name="冷静计时器" type="Timer" parent="." index="4" unique_id=714344288]
+wait_time = 2.5
+one_shot = true

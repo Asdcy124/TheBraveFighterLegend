@@ -4,8 +4,8 @@
 [ext_resource type="Script" uid="uid://b2vwono5egeyu" path="res://类/状态机/状态机.cs" id="2_di0qx"]
 
 [node name="敌人" type="CharacterBody2D" unique_id=754477548]
+collision_layer = 4
 script = ExtResource("1_5ltqj")
-"方向" = -1
 
 [node name="动画精灵" type="AnimatedSprite2D" parent="." unique_id=813344594]
 

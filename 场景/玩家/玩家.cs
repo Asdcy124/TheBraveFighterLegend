@@ -46,7 +46,7 @@ public partial class 玩家 : CharacterBody2D, I_状态机
     }
     #endregion
 
-    #region 移动相关属性
+    #region 移动相关
     [Export] public float 奔跑速度 = 160;
     public float 地面奔跑加速度 = 800;
     public float 空中奔跑加速度 = 1600;
@@ -166,6 +166,7 @@ public partial class 玩家 : CharacterBody2D, I_状态机
             case E_状态.滑墙:
                 动画播放器.Play("滑墙");
                 动画精灵.Position = new Vector2(6 * GetWallNormal().X, -24);
+                Velocity = new Vector2(Velocity.X, Velocity.Y / 5);
                 break;
 
             case E_状态.蹬墙跳:
@@ -175,7 +176,7 @@ public partial class 玩家 : CharacterBody2D, I_状态机
                 y = -蹬墙跳速度.Y;//这里就对玩家友好些
                 Velocity = new Vector2(x, y);
                 提前跳跃计时器.Stop();
-                Engine.TimeScale = 0.3;
+                Engine.TimeScale = 0.5;
                 break;
         }
 
