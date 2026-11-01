@@ -62,6 +62,8 @@ public partial class 玩家 : CharacterBody2D, I_状态机
         速度矢量 += 重力 * (float)delta;
         //移动
         float 左右移动 = Input.GetAxis("移动_左", "移动_右");
+        // if (左右移动 < 0) 左右移动 = -1;
+        // else if (左右移动 > 0) 左右移动 = 1;
         float 奔跑加速度 = IsOnFloor() ? 地面奔跑加速度 : 空中奔跑加速度;
         速度矢量.X = (float)Mathf.MoveToward(速度矢量.X, 左右移动 * 奔跑速度, 奔跑加速度 * delta);
 

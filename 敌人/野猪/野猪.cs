@@ -27,7 +27,7 @@ public partial class 野猪 : 敌人
     #region 移动
     public override E_方向 方向
     {
-        get => base.方向;
+        get => base.方向;//C#的bug不用管, 'get' 访问器应使用“field”，因为其他访问器正在使用它。
         set
         {
             if (!IsNodeReady())
@@ -64,7 +64,7 @@ public partial class 野猪 : 敌人
 
     public override void 切换状态(int 当前状态, int 下一个状态)
     {
-        GD.Print($"[{Engine.GetPhysicsFrames()}] {(E_状态)当前状态} => {(E_状态)下一个状态}");
+        //GD.Print($"[{Engine.GetPhysicsFrames()}] {(E_状态)当前状态} => {(E_状态)下一个状态}");
 
         switch ((E_状态)下一个状态)
         {
