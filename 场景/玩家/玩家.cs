@@ -43,7 +43,12 @@ public partial class 玩家 : CharacterBody2D, I_状态机
             提前跳跃计时器.Start();
         if (@event.IsActionReleased("跳跃") && Velocity.Y < -跳跃速度 / 2)
             Velocity = new Vector2(Velocity.X, -跳跃速度 / 2);//将跳跃力缩减一半
+
+        //攻击
+        if (@event.IsActionPressed("攻击") && Is能尝试连续攻击)
+            Is需要执行连续攻击 = true;
     }
+
     #endregion
 
     #region 移动相关
@@ -102,10 +107,15 @@ public partial class 玩家 : CharacterBody2D, I_状态机
         跳跃下落,
         跳跃着陆,
         滑墙,
-        蹬墙跳
+        蹬墙跳,
+
+        攻击_1,
+        攻击_2,
+        攻击_3,
     }
 
-    public E_状态[] 站在地面上的状态s = { E_状态.空闲, E_状态.奔跑, E_状态.跳跃着陆 };
+    public E_状态[] 站在地面上的状态s =
+        { E_状态.空闲, E_状态.奔跑, E_状态.跳跃着陆, E_状态.攻击_1, E_状态.攻击_2, E_状态.攻击_3 };
     private bool Is切换状态后第一帧 = false;
 
     public bool Is可以进入滑墙状态() => IsOnWall() && 滑墙手.IsColliding() && 滑墙脚.IsColliding();
@@ -134,6 +144,10 @@ public partial class 玩家 : CharacterBody2D, I_状态机
 
             case E_状态.蹬墙跳:
                 Engine.TimeScale = 1;
+                break;
+
+            case E_状态.攻击_3:
+                动画精灵.Position = new Vector2(0, -28);
                 break;
         }
 
@@ -180,6 +194,21 @@ public partial class 玩家 : CharacterBody2D, I_状态机
                 提前跳跃计时器.Stop();
                 Engine.TimeScale = 0.5;
                 break;
+
+            case E_状态.攻击_1:
+                动画播放器.Play("攻击_1");
+                Is需要执行连续攻击 = false;
+                break;
+            case E_状态.攻击_2:
+                动画播放器.Play("攻击_2");
+                Is需要执行连续攻击 = false;
+                break;
+            case E_状态.攻击_3:
+                动画播放器.Play("攻击_3");
+                Is需要执行连续攻击 = false;
+                动画精灵.Position = new Vector2(8 * 动画精灵.Scale.X, -28);
+                break;
+
         }
 
         动画精灵.Play();
@@ -192,6 +221,8 @@ public partial class 玩家 : CharacterBody2D, I_状态机
         bool is需要跳跃 = is能跳跃 && 提前跳跃计时器.TimeLeft > 0;
         if (is需要跳跃)
             return (int)E_状态.跳跃上升;
+        else if (站在地面上的状态s.Contains((E_状态)当前状态) && !IsOnFloor())
+            return (int)E_状态.跳跃下落;
 
         float 左右移动 = Input.GetAxis("移动_左", "移动_右");
         bool is奔跑 = 左右移动 != 0 || Velocity.X != 0;
@@ -199,16 +230,16 @@ public partial class 玩家 : CharacterBody2D, I_状态机
         switch ((E_状态)当前状态)
         {
             case E_状态.空闲:
-                if (!IsOnFloor())
-                    return (int)(Velocity.Y <= 0 ? E_状态.跳跃上升 : E_状态.跳跃下落);
-                if (is奔跑)
+                if (Input.IsActionJustPressed("攻击"))
+                    return (int)E_状态.攻击_1;
+                else if (is奔跑)
                     return (int)E_状态.奔跑;
                 break;
 
             case E_状态.奔跑:
-                if (!IsOnFloor())
-                    return (int)(Velocity.Y <= 0 ? E_状态.跳跃上升 : E_状态.跳跃下落);
-                if (!is奔跑)
+                if (Input.IsActionJustPressed("攻击"))
+                    return (int)E_状态.攻击_1;
+                else if (!is奔跑)
                     return (int)E_状态.空闲;
                 break;
 
@@ -246,6 +277,20 @@ public partial class 玩家 : CharacterBody2D, I_状态机
                 else if (Velocity.Y >= 0)
                     return (int)E_状态.跳跃下落;
                 break;
+
+            case E_状态.攻击_1:
+                if (!动画精灵.IsPlaying())
+                    return Is需要执行连续攻击 ? (int)E_状态.攻击_2 : (int)E_状态.空闲;
+                break;
+            case E_状态.攻击_2:
+                if (!动画精灵.IsPlaying())
+                    return Is需要执行连续攻击 ? (int)E_状态.攻击_3 : (int)E_状态.空闲;
+                break;
+            case E_状态.攻击_3:
+                if (!动画精灵.IsPlaying())
+                    return (int)E_状态.空闲;
+                break;
+
         }
 
         return 当前状态;
@@ -289,10 +334,35 @@ public partial class 玩家 : CharacterBody2D, I_状态机
                 else
                     移动(delta, GetGravity());
                 break;
+
+            case E_状态.攻击_1:
+            case E_状态.攻击_2:
+            case E_状态.攻击_3:
+                站立(delta, GetGravity());
+                break;
+
         }
 
         Is切换状态后第一帧 = false;
     }
+
+    #endregion
+
+    #region 攻击
+    /// <summary>
+    /// 玩家是否能通过按键触发连续攻击, 用于可控的多段攻击<para/>
+    /// 
+    /// <c>
+    /// true: 后续有连续攻击,可触发<br/>
+    /// false: 后续没有连续攻击 或 触发时机已过
+    /// </c>
+    /// </summary>
+    [ExportGroup("攻击")]
+    [Export] public bool Is能尝试连续攻击 = false;
+    /// <summary>
+    /// true: 给定条件以满足, 程序将自动切换到下一段攻击中
+    /// </summary>
+    public bool Is需要执行连续攻击 = false;
 
     #endregion
 

@@ -37,6 +37,70 @@ region = Rect2(336, 112, 56, 56)
 atlas = ExtResource("1_o2saa")
 region = Rect2(392, 112, 56, 56)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_cx2mw"]
+atlas = ExtResource("1_o2saa")
+region = Rect2(0, 56, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ui06b"]
+atlas = ExtResource("1_o2saa")
+region = Rect2(56, 56, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nomj7"]
+atlas = ExtResource("1_o2saa")
+region = Rect2(112, 56, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0dk41"]
+atlas = ExtResource("1_o2saa")
+region = Rect2(168, 56, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1as88"]
+atlas = ExtResource("1_o2saa")
+region = Rect2(224, 56, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kisxj"]
+atlas = ExtResource("1_o2saa")
+region = Rect2(280, 56, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5iqyg"]
+atlas = ExtResource("1_o2saa")
+region = Rect2(336, 56, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5h3eb"]
+atlas = ExtResource("1_o2saa")
+region = Rect2(392, 56, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pa0rk"]
+atlas = ExtResource("3_63w52")
+region = Rect2(0, 224, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4huf8"]
+atlas = ExtResource("3_63w52")
+region = Rect2(56, 224, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y611u"]
+atlas = ExtResource("3_63w52")
+region = Rect2(112, 224, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7lms5"]
+atlas = ExtResource("3_63w52")
+region = Rect2(168, 224, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dkfg0"]
+atlas = ExtResource("3_63w52")
+region = Rect2(224, 224, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8dod"]
+atlas = ExtResource("3_63w52")
+region = Rect2(280, 224, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3m8mx"]
+atlas = ExtResource("3_63w52")
+region = Rect2(336, 224, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uw4pb"]
+atlas = ExtResource("3_63w52")
+region = Rect2(392, 224, 56, 56)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_k24br"]
 atlas = ExtResource("3_63w52")
 region = Rect2(0, 168, 56, 56)
@@ -174,6 +238,69 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_cx2mw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ui06b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nomj7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0dk41")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1as88")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kisxj")
+}],
+"loop": 0,
+"name": &"攻击_1",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5iqyg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5h3eb")
+}],
+"loop": 0,
+"name": &"攻击_2",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pa0rk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4huf8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y611u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7lms5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dkfg0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8dod")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3m8mx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uw4pb")
+}],
+"loop": 0,
+"name": &"攻击_3",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_k24br")
 }, {
 "duration": 1.0,
@@ -291,6 +418,18 @@ size = Vector2(12, 28)
 
 [sub_resource type="Animation" id="Animation_gpyyr"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:Is能连续攻击")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_2pksg"]
 resource_name = "奔跑"
@@ -307,6 +446,103 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [&"奔跑"]
+}
+
+[sub_resource type="Animation" id="Animation_tuv51"]
+resource_name = "攻击_1"
+length = 0.6
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("动画精灵:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"攻击_1"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:Is能尝试连续攻击")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_cvmuh"]
+resource_name = "攻击_2"
+length = 0.19999999999999998
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("动画精灵:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"攻击_2"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:Is能尝试连续攻击")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_2tg31"]
+resource_name = "攻击_3"
+length = 0.009999999999999998
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("动画精灵:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"攻击_3"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("动画精灵:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(7, -28)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:Is能尝试连续攻击")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_cx2mw"]
@@ -565,6 +801,9 @@ tracks/0/keys = {
 _data = {
 &"RESET": SubResource("Animation_gpyyr"),
 &"奔跑": SubResource("Animation_2pksg"),
+&"攻击_1": SubResource("Animation_tuv51"),
+&"攻击_2": SubResource("Animation_cvmuh"),
+&"攻击_3": SubResource("Animation_2tg31"),
 &"滑墙": SubResource("Animation_cx2mw"),
 &"空闲": SubResource("Animation_o2saa"),
 &"跳跃上升": SubResource("Animation_63w52"),
@@ -578,11 +817,10 @@ script = ExtResource("1_v4cha")
 metadata/_edit_lock_ = true
 
 [node name="动画精灵" type="AnimatedSprite2D" parent="." unique_id=1871224212]
-position = Vector2(0, -28)
+position = Vector2(7, -28)
 sprite_frames = SubResource("SpriteFrames_d6f17")
-animation = &"空闲"
+animation = &"攻击_3"
 autoplay = "空闲"
-frame_progress = 0.66281265
 
 [node name="滑墙手" type="RayCast2D" parent="动画精灵" unique_id=1114906979]
 position = Vector2(0, 2)
