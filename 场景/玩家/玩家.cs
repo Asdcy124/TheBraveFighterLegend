@@ -35,6 +35,11 @@ public partial class 玩家 : CharacterBody2D, I_状态机
         提前跳跃计时器 = GetNode<Timer>("提前跳跃计时器");
 
         状态机 = GetNode<状态机>("状态机");
+
+        攻击_1 = GetNode<CollisionShape2D>("动画精灵/攻击框/攻击_1");
+        攻击_2 = GetNode<CollisionShape2D>("动画精灵/攻击框/攻击_2");
+        攻击_3 = GetNode<CollisionShape2D>("动画精灵/攻击框/攻击_3");
+        攻击_1.Hide(); 攻击_2.Hide(); 攻击_3.Hide();
     }
 
     public override void _UnhandledInput(InputEvent @event)
@@ -146,7 +151,14 @@ public partial class 玩家 : CharacterBody2D, I_状态机
                 Engine.TimeScale = 1;
                 break;
 
+            case E_状态.攻击_1:
+                攻击_1.Disabled = true; 攻击_1.Hide();
+                break;
+            case E_状态.攻击_2:
+                攻击_2.Disabled = true; 攻击_2.Hide();
+                break;
             case E_状态.攻击_3:
+                攻击_3.Disabled = true; 攻击_3.Hide();
                 动画精灵.Position = new Vector2(0, -28);
                 break;
         }
@@ -364,6 +376,9 @@ public partial class 玩家 : CharacterBody2D, I_状态机
     /// </summary>
     public bool Is需要执行连续攻击 = false;
 
+    public CollisionShape2D 攻击_1;
+    public CollisionShape2D 攻击_2;
+    public CollisionShape2D 攻击_3;
     #endregion
 
 }

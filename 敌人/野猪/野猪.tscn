@@ -170,12 +170,22 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_18uvf"]
+radius = 7.0
+height = 26.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5qadw"]
+radius = 12.0415945
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jlt24"]
+size = Vector2(33, 7)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_n67xy"]
 radius = 14.035668
 
 [sub_resource type="Animation" id="Animation_drhwj"]
 resource_name = "受击"
-length = 0.009999999999999998
+length = 0.00999999999999999
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -191,7 +201,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_jlt24"]
 resource_name = "奔跑"
-length = 0.009999999999999998
+length = 0.00999999999999999
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -207,7 +217,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_yjiwj"]
 resource_name = "空闲"
-length = 0.009999999999999998
+length = 0.00999999999999999
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -223,7 +233,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_xkais"]
 resource_name = "行走"
-length = 0.009999999999999998
+length = 0.00999999999999999
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -253,7 +263,8 @@ position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_xh1ki")
 animation = &"奔跑"
 autoplay = "空闲"
-frame_progress = 0.16500166
+frame = 5
+frame_progress = 0.14265223
 
 [node name="墙体检测" type="RayCast2D" parent="动画精灵" index="0" unique_id=281039812]
 position = Vector2(-11, 2)
@@ -268,9 +279,24 @@ position = Vector2(-11, 2)
 target_position = Vector2(-85, 0)
 collision_mask = 3
 
+[node name="CollisionShape2D" parent="动画精灵/攻击框" parent_id_path=PackedInt32Array(95062734) index="0" unique_id=112739014]
+position = Vector2(-6, 6)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_18uvf")
+
+[node name="CollisionShape2D" parent="动画精灵/受击框" parent_id_path=PackedInt32Array(697876655) index="0" unique_id=1866806714]
+position = Vector2(-2, 3)
+shape = SubResource("CircleShape2D_5qadw")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="动画精灵/受击框" parent_id_path=PackedInt32Array(697876655) index="1" unique_id=576296100]
+position = Vector2(-2.5, 6.5)
+shape = SubResource("RectangleShape2D_jlt24")
+debug_color = Color(0, 0.9019608, 0.05490196, 0.41960785)
+
 [node name="CollisionShape2D" parent="." index="1" unique_id=22714472]
 position = Vector2(0, -13)
 shape = SubResource("CircleShape2D_n67xy")
+debug_color = Color(0, 0.6, 0.7019608, 0.41960785)
 
 [node name="动画播放器" parent="." index="2" unique_id=1290207831]
 libraries/ = SubResource("AnimationLibrary_n67xy")
@@ -278,3 +304,5 @@ libraries/ = SubResource("AnimationLibrary_n67xy")
 [node name="冷静计时器" type="Timer" parent="." index="4" unique_id=714344288]
 wait_time = 2.5
 one_shot = true
+
+[connection signal="受击" from="动画精灵/受击框" to="." method="On_受击框_受击"]

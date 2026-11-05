@@ -136,4 +136,11 @@ public partial class 野猪 : 敌人
     }
     #endregion
 
+    #region 战斗相关
+    public void On_受击框_受击(Node2D 攻击者)
+    {
+        GD.Print("饿啊~");
+    }
+    #endregion
+
 }

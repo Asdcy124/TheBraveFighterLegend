@@ -1,13 +1,33 @@
 [gd_scene format=3 uid="uid://cfnahfreccnnp"]
 
 [ext_resource type="Script" uid="uid://dpppdkl43t3p7" path="res://敌人/敌人.cs" id="1_5ltqj"]
+[ext_resource type="Script" uid="uid://dnc3tcucc767l" path="res://类/战斗相关/攻击框.cs" id="2_18uvf"]
 [ext_resource type="Script" uid="uid://b2vwono5egeyu" path="res://类/状态机/状态机.cs" id="2_di0qx"]
+[ext_resource type="Script" uid="uid://cg8hxid2h3ebs" path="res://类/战斗相关/受击框.cs" id="3_5qadw"]
 
 [node name="敌人" type="CharacterBody2D" unique_id=754477548]
 collision_layer = 4
 script = ExtResource("1_5ltqj")
 
 [node name="动画精灵" type="AnimatedSprite2D" parent="." unique_id=813344594]
+
+[node name="攻击框" type="Area2D" parent="动画精灵" unique_id=95062734]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("2_18uvf")
+metadata/_custom_type_script = "uid://dnc3tcucc767l"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="动画精灵/攻击框" unique_id=112739014]
+debug_color = Color(1, 0, 0, 0.41960785)
+
+[node name="受击框" type="Area2D" parent="动画精灵" unique_id=697876655]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("3_5qadw")
+metadata/_custom_type_script = "uid://cg8hxid2h3ebs"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="动画精灵/受击框" unique_id=1866806714]
+debug_color = Color(0, 0.9019608, 0.05490196, 0.41960785)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=22714472]
 
